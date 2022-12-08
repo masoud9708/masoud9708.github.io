@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<h1 align="center">{{ page.title }}</h1>
+<p style="text-align:center;"><img src="{{ page.logo }}"></p>
+
+<p align="center"><font size="3"><b>By:</b></font> <a href="https://www.hackthebox.eu/home/users/profile/182543">Hilbert</a> </p>
+
+<div id="encryptMe" class="encryptMe">
+<!-- Shall we play a game? -->
+{{ content }}
+</div>
+
+<p>If you found this walkthrough helpful, please consider adding a respect to my <a href="https://www.hackthebox.eu/home/users/profile/182543">profile</a>, thanks.</p>
+
+{% if page.comments_id %}
+{% include comments.html issue_id=page.comments_id %}
+{% endif %}

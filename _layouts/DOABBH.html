@@ -1,0 +1,43 @@
+---
+layout: base
+---
+
+{% include header.html type="post" %}
+
+<div class="container-md">
+  <div class="row">
+    <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+
+      <article role="main" class="blog-post">
+        {{ content }}
+      </article>
+
+      <div class="posts-list">
+	    {% for item in site.DOABBH %}
+		  <article class="post-preview">
+		    <a href="{{ item.url | absolute_url }}">
+		      <h2 class="post-title">{{ item.title }}</h2>
+		    </a>
+
+		    <p class="post-meta">
+		      {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+		      Posted on {{ item.date | date: date_format }}
+		    </p>
+
+		    <div class="post-entry-container">
+		      <div class="post-entry">
+		        {% assign excerpt_length = site.excerpt_length | default: 50 %}
+		        {{ item.excerpt | strip_html | xml_escape | truncatewords: excerpt_length }}
+		        {% assign excerpt_word_count = item.excerpt | number_of_words %}
+		        {% if item.content != item.excerpt or excerpt_word_count > excerpt_length %}
+		          <a href="{{ item.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
+		        {% endif %}
+		      </div>
+		    </div>
+		  </article>
+		{% endfor %}
+	  </div>
+    </div>
+  </div>
+</div>
+
